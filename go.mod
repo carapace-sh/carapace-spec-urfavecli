@@ -1,4 +1,4 @@
-module github.com/rsteube/carapace-spec-urfave-cli
+module github.com/rsteube/carapace-spec-urfavecli
 
 go 1.20
 
