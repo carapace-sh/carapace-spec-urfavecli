@@ -1,7 +1,7 @@
 github.com/cpuguy83/go-md2man/v2 v2.0.2 h1:p1EgwI/C7NhT0JmVkwCD2ZBK8j4aeHQX2pMHHBfMQ6w=
 github.com/cpuguy83/go-md2man/v2 v2.0.2/go.mod h1:tgQtvFlXSQOSOSIRvRPT7W67SCa46tRHOmNcaadrF8o=
-github.com/rsteube/carapace-spec v0.10.2 h1:hCptRWgMDqox6/DowBkoQMEmr2VXwcN1Cnsffm/MoQw=
-github.com/rsteube/carapace-spec v0.10.2/go.mod h1:S+scCJRlJonPtJ05DLo4Mg29+sbRtTlqIq9ym3aekl0=
+github.com/rsteube/carapace-spec v0.10.3 h1:7n2Z7ceo0/Ulj0p9puSs2foTLS4AAe68vK8nN9egNtg=
+github.com/rsteube/carapace-spec v0.10.3/go.mod h1:S+scCJRlJonPtJ05DLo4Mg29+sbRtTlqIq9ym3aekl0=
 github.com/russross/blackfriday/v2 v2.1.0 h1:JIOH55/0cWyOuilr9/qlrm0BSXldqnqwMsf35Ld67mk=
 github.com/russross/blackfriday/v2 v2.1.0/go.mod h1:+Rmxgy9KzJVeS9/2gXHxylqXiyQDYRxCVz55jmeOWTM=
 github.com/urfave/cli/v2 v2.25.7 h1:VAzn5oq403l5pHjc4OhD54+XGO9cdKVL/7lDjF+iKUs=
