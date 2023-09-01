@@ -1,7 +1,6 @@
 package spec
 
 import (
-	"fmt"
 	"strings"
 
 	"github.com/urfave/cli/v2"
@@ -18,27 +17,10 @@ func (f flag) Name() string {
 func (f flag) Shorthand() string {
 	for _, name := range f.Names() {
 		if len(name) == 1 {
-			return name
+			return "-" + name
 		}
 	}
 	return ""
-}
-
-func (f flag) Definition() string {
-	definition := ""
-
-	switch f.Shorthand() {
-	case "":
-		definition = fmt.Sprintf("--%v", f.Name())
-	default:
-		definition = fmt.Sprintf("-%v, --%v", f.Shorthand(), f.Name())
-	}
-
-	if f.TakesValue() {
-		definition += "="
-	}
-
-	return definition
 }
 
 func (f flag) TakesValue() bool {
