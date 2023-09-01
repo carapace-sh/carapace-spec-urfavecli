@@ -4,7 +4,7 @@ go 1.20
 
 require (
 	github.com/rsteube/carapace-spec v0.10.2
-	github.com/urfave/cli/v2 v2.25.1
+	github.com/urfave/cli/v2 v2.25.7
 	gopkg.in/yaml.v2 v2.4.0
 )
 
