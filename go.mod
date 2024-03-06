@@ -3,7 +3,7 @@ module github.com/rsteube/carapace-spec-urfavecli
 go 1.20
 
 require (
-	github.com/rsteube/carapace-spec v0.15.0
+	github.com/rsteube/carapace-spec v0.16.0
 	github.com/urfave/cli/v2 v2.27.1
 	gopkg.in/yaml.v2 v2.4.0
 )
