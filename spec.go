@@ -3,7 +3,7 @@ package spec
 import (
 	"fmt"
 
-	"github.com/rsteube/carapace-spec/pkg/command"
+	"github.com/carapace-sh/carapace-spec/pkg/command"
 	"github.com/urfave/cli/v2"
 	"gopkg.in/yaml.v2"
 )
