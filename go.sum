@@ -1,5 +1,5 @@
-github.com/carapace-sh/carapace-spec v1.0.1 h1:K9ZlmAefR0TzUGeCDGmEgjUX9e17++tp3J7jylrCRSY=
-github.com/carapace-sh/carapace-spec v1.0.1/go.mod h1:Zh41opce5OTkqn6a5Old7Az+czPgEg2N3j0uNtDfXbA=
+github.com/carapace-sh/carapace-spec v1.1.0 h1:DPLB52P2SlRYzIUG5lPfrJQ2JP3JTqrNYqE2wvxFKQs=
+github.com/carapace-sh/carapace-spec v1.1.0/go.mod h1:O+DL25MthWLY2ciMU2Cbv05vqhgdWoHf6ePc0c3SDjI=
 github.com/cpuguy83/go-md2man/v2 v2.0.5 h1:ZtcqGrnekaHpVLArFSe4HK5DoKx1T0rq2DwVB0alcyc=
 github.com/cpuguy83/go-md2man/v2 v2.0.5/go.mod h1:tgQtvFlXSQOSOSIRvRPT7W67SCa46tRHOmNcaadrF8o=
 github.com/russross/blackfriday/v2 v2.1.0 h1:JIOH55/0cWyOuilr9/qlrm0BSXldqnqwMsf35Ld67mk=
