@@ -42,7 +42,7 @@ func scrape(c *cli.Command) command.Command {
 		Description: c.Usage,
 		Hidden:      c.Hidden,
 		Group:       c.Category,
-		Flags:       make(map[string]string),
+		Flags:       make(command.FlagSet),
 		Commands:    make([]command.Command, 0),
 	}
 	cmd.Completion.Flag = make(map[string][]string)
@@ -50,10 +50,10 @@ func scrape(c *cli.Command) command.Command {
 	for _, f := range c.Flags {
 		flag := flag{f}
 		cmd.AddFlag(command.Flag{
-			Longhand:  "--" + flag.Name(),
-			Shorthand: flag.Shorthand(),
-			Usage:     flag.Usage(),
-			Value:     flag.TakesValue(),
+			Longhand:    "--" + flag.Name(),
+			Shorthand:   flag.Shorthand(),
+			Description: flag.Usage(),
+			Value:       flag.TakesValue(),
 		})
 
 		if flag.TakesFile() {
