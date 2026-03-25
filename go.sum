@@ -1,7 +1,7 @@
-github.com/carapace-sh/carapace v1.11.0 h1:dTUFXvIrUTLd9BGLsfDt4wCgEyPl8bJeZOFDmN7fIfo=
-github.com/carapace-sh/carapace v1.11.0/go.mod h1:NVkuv1s8wyFvu7d98rdgYwqGKMB6GO1MEUZp5RcWri8=
-github.com/carapace-sh/carapace-spec v1.5.0 h1:Td9TZatrvOty3zgl2QllA1kuT7SRBLuGiwEZ5PF8Gko=
-github.com/carapace-sh/carapace-spec v1.5.0/go.mod h1:d/iboTE/FdcxfObs2tpTu7PPqKk+r6YNvvdgeXIC5lk=
+github.com/carapace-sh/carapace v1.11.2 h1:C/vBW90oPVe8qGagD+Zd0zumqjpJLnXYFN/41c6/0Ys=
+github.com/carapace-sh/carapace v1.11.2/go.mod h1:5MUSHyLN9GGb5/NY/j9VI68/TcZV4ApRCAHGg4WeU0s=
+github.com/carapace-sh/carapace-spec v1.5.1 h1:vksUWmpAvv9Kgkfd5IO106HLWM2sHsLUAiMAuGf44sE=
+github.com/carapace-sh/carapace-spec v1.5.1/go.mod h1:tuyJA7EffxdF12zjxxsh9mQCwtDS/sj5YghSBARxbOM=
 github.com/cpuguy83/go-md2man/v2 v2.0.7 h1:zbFlGlXEAKlwXpmvle3d8Oe3YnkKIK4xSRTd3sHPnBo=
 github.com/cpuguy83/go-md2man/v2 v2.0.7/go.mod h1:oOW0eioCTA6cOiMLiUPZOpcVxMig6NIQQ7OS05n1F4g=
 github.com/russross/blackfriday/v2 v2.1.0 h1:JIOH55/0cWyOuilr9/qlrm0BSXldqnqwMsf35Ld67mk=
