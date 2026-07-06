@@ -5,7 +5,7 @@ import (
 	"testing"
 
 	"github.com/carapace-sh/carapace-spec/pkg/command"
-	"github.com/urfave/cli/v2"
+	"github.com/urfave/cli/v3"
 	"gopkg.in/yaml.v2"
 )
 
@@ -30,7 +30,7 @@ func flagKeys(fs command.FlagSet) []string {
 }
 
 func TestDefaultValues(t *testing.T) {
-	app := &cli.App{
+	app := &cli.Command{
 		Name:  "testapp",
 		Usage: "test app",
 		Flags: []cli.Flag{
@@ -48,7 +48,7 @@ func TestDefaultValues(t *testing.T) {
 				Name:  "verbose",
 				Usage: "verbose mode",
 			},
-			&cli.PathFlag{
+			&cli.StringFlag{
 				Name:  "config",
 				Usage: "config path",
 				Value: "/etc/app.yaml",
@@ -92,14 +92,14 @@ func TestDefaultValues(t *testing.T) {
 }
 
 func TestStringSliceFlagDefault(t *testing.T) {
-	app := &cli.App{
+	app := &cli.Command{
 		Name:  "testapp",
 		Usage: "test app",
 		Flags: []cli.Flag{
 			&cli.StringSliceFlag{
 				Name:  "files",
 				Usage: "config files",
-				Value: cli.NewStringSlice("/etc/a.conf", "/etc/b.conf"),
+				Value: []string{"/etc/a.conf", "/etc/b.conf"},
 			},
 		},
 	}
@@ -113,7 +113,7 @@ func TestStringSliceFlagDefault(t *testing.T) {
 }
 
 func TestShorthand(t *testing.T) {
-	app := &cli.App{
+	app := &cli.Command{
 		Name:  "testapp",
 		Usage: "test app",
 		Flags: []cli.Flag{
@@ -143,7 +143,7 @@ func TestShorthand(t *testing.T) {
 }
 
 func TestFlagKeyFormat(t *testing.T) {
-	app := &cli.App{
+	app := &cli.Command{
 		Name:  "testapp",
 		Usage: "test app",
 		Flags: []cli.Flag{
@@ -166,7 +166,7 @@ func TestFlagKeyFormat(t *testing.T) {
 }
 
 func TestTakesFile(t *testing.T) {
-	app := &cli.App{
+	app := &cli.Command{
 		Name:  "testapp",
 		Usage: "test app",
 		Flags: []cli.Flag{
@@ -179,7 +179,7 @@ func TestTakesFile(t *testing.T) {
 				Name:  "name",
 				Usage: "name value",
 			},
-			&cli.PathFlag{
+			&cli.StringFlag{
 				Name:      "config",
 				Usage:     "config path",
 				TakesFile: true,
@@ -201,7 +201,7 @@ func TestTakesFile(t *testing.T) {
 }
 
 func TestUsageTruncation(t *testing.T) {
-	app := &cli.App{
+	app := &cli.Command{
 		Name:  "testapp",
 		Usage: "test app",
 		Flags: []cli.Flag{
@@ -220,7 +220,7 @@ func TestUsageTruncation(t *testing.T) {
 }
 
 func TestHiddenCommandsFiltered(t *testing.T) {
-	app := &cli.App{
+	app := &cli.Command{
 		Name:  "testapp",
 		Usage: "test app",
 		Commands: []*cli.Command{
@@ -247,7 +247,7 @@ func TestHiddenCommandsFiltered(t *testing.T) {
 }
 
 func TestSubcommandRecursion(t *testing.T) {
-	app := &cli.App{
+	app := &cli.Command{
 		Name:  "testapp",
 		Usage: "test app",
 		Commands: []*cli.Command{
@@ -260,7 +260,7 @@ func TestSubcommandRecursion(t *testing.T) {
 						Usage: "parent flag",
 					},
 				},
-				Subcommands: []*cli.Command{
+				Commands: []*cli.Command{
 					{
 						Name:  "child",
 						Usage: "child command",
@@ -296,7 +296,7 @@ func TestSubcommandRecursion(t *testing.T) {
 }
 
 func TestExtendedYAMLNotation(t *testing.T) {
-	app := &cli.App{
+	app := &cli.Command{
 		Name:  "testapp",
 		Usage: "test app",
 		Flags: []cli.Flag{
@@ -333,7 +333,7 @@ func TestExtendedYAMLNotation(t *testing.T) {
 }
 
 func TestAliasesAndGroup(t *testing.T) {
-	app := &cli.App{
+	app := &cli.Command{
 		Name:  "testapp",
 		Usage: "test app",
 		Commands: []*cli.Command{
@@ -363,7 +363,7 @@ func TestAliasesAndGroup(t *testing.T) {
 }
 
 func TestTakesFileAllTypes(t *testing.T) {
-	app := &cli.App{
+	app := &cli.Command{
 		Name:  "testapp",
 		Usage: "test app",
 		Flags: []cli.Flag{
@@ -397,7 +397,7 @@ func TestTakesFileAllTypes(t *testing.T) {
 }
 
 func TestDefaultWithCustomDefaultText(t *testing.T) {
-	app := &cli.App{
+	app := &cli.Command{
 		Name:  "testapp",
 		Usage: "test app",
 		Flags: []cli.Flag{

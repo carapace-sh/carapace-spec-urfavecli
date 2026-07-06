@@ -2,16 +2,17 @@ package spec
 
 import (
 	"bytes"
+	"context"
 	"io"
 	"os"
 	"strings"
 	"testing"
 
-	"github.com/urfave/cli/v2"
+	"github.com/urfave/cli/v3"
 )
 
 func TestRegisterInjectsHiddenCommand(t *testing.T) {
-	app := &cli.App{
+	app := &cli.Command{
 		Name:  "testapp",
 		Usage: "test app",
 	}
@@ -21,8 +22,8 @@ func TestRegisterInjectsHiddenCommand(t *testing.T) {
 	for _, cmd := range app.Commands {
 		if cmd.Name == "_carapace" && cmd.Hidden {
 			found = true
-			if len(cmd.Subcommands) != 1 || cmd.Subcommands[0].Name != "spec" {
-				t.Errorf("expected single 'spec' subcommand, got %v", cmd.Subcommands)
+			if len(cmd.Commands) != 1 || cmd.Commands[0].Name != "spec" {
+				t.Errorf("expected single 'spec' subcommand, got %v", cmd.Commands)
 			}
 		}
 	}
@@ -40,7 +41,7 @@ func TestRegisterInjectsHiddenCommand(t *testing.T) {
 }
 
 func TestRegisterSpecAction(t *testing.T) {
-	app := &cli.App{
+	app := &cli.Command{
 		Name:  "testapp",
 		Usage: "test app",
 		Flags: []cli.Flag{
@@ -63,7 +64,7 @@ func TestRegisterSpecAction(t *testing.T) {
 	}
 	os.Stdout = w
 
-	err = app.Run([]string{"testapp", "_carapace", "spec"})
+	err = app.Run(context.Background(), []string{"testapp", "_carapace", "spec"})
 
 	w.Close()
 	os.Stdout = old

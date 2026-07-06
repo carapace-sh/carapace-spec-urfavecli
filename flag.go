@@ -4,7 +4,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/urfave/cli/v2"
+	"github.com/urfave/cli/v3"
 )
 
 type flag struct {
@@ -45,10 +45,6 @@ func (f flag) TakesFile() bool {
 		if flag.TakesFile {
 			return true
 		}
-	case *cli.PathFlag:
-		if flag.TakesFile {
-			return true
-		}
 	}
 	return false
 }
@@ -59,16 +55,21 @@ func (f flag) Default() string {
 		return ""
 	}
 
+	// In v3, GetDefaultText returns only the explicit DefaultText field.
+	// GetValue returns the stringified actual default value (Value field).
 	text := docFlag.GetDefaultText()
+	if text == "" {
+		text = docFlag.GetValue()
+	}
 	if text == "" {
 		return ""
 	}
 
-	// StringFlag, PathFlag, and StringSliceFlag wrap their defaults in
-	// display quoting (%q / strconv.Quote) via GetDefaultText. Unwrap so
+	// StringFlag and StringSliceFlag wrap their defaults in
+	// display quoting (%q / strconv.Quote) via GetValue. Unwrap so
 	// pflag's Value.Set() receives the raw value.
 	switch f.Flag.(type) {
-	case *cli.StringFlag, *cli.PathFlag:
+	case *cli.StringFlag:
 		if unquoted, err := strconv.Unquote(text); err == nil {
 			return unquoted
 		}

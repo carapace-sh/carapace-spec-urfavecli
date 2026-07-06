@@ -1,21 +1,22 @@
 package spec
 
 import (
+	"context"
 	"fmt"
 
 	"github.com/carapace-sh/carapace-spec/pkg/command"
-	"github.com/urfave/cli/v2"
+	"github.com/urfave/cli/v3"
 	"gopkg.in/yaml.v2"
 )
 
-func Register(app *cli.App) {
+func Register(app *cli.Command) {
 	app.Commands = append(app.Commands, &cli.Command{
 		Name:   "_carapace",
 		Hidden: true,
-		Subcommands: []*cli.Command{
+		Commands: []*cli.Command{
 			{
 				Name: "spec",
-				Action: func(ctx *cli.Context) (err error) {
+				Action: func(ctx context.Context, cmd *cli.Command) (err error) {
 					var m []byte
 					if m, err = yaml.Marshal(Command(app)); err == nil {
 						fmt.Println(string(m))
@@ -27,13 +28,8 @@ func Register(app *cli.App) {
 	})
 }
 
-func Command(app *cli.App) command.Command {
-	return scrape(&cli.Command{
-		Name:        app.Name,
-		Description: app.Usage,
-		Flags:       app.Flags,
-		Subcommands: app.Commands,
-	})
+func Command(app *cli.Command) command.Command {
+	return scrape(app)
 }
 func scrape(c *cli.Command) command.Command {
 	cmd := command.Command{
@@ -62,7 +58,7 @@ func scrape(c *cli.Command) command.Command {
 		}
 	}
 
-	for _, subcmd := range c.Subcommands {
+	for _, subcmd := range c.Commands {
 		if !subcmd.Hidden {
 			cmd.Commands = append(cmd.Commands, scrape(subcmd))
 		}
