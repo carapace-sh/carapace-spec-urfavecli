@@ -1,9 +1,10 @@
 package spec
 
 import (
+	"strconv"
 	"strings"
 
-	"github.com/urfave/cli/v2"
+	"github.com/urfave/cli/v3"
 )
 
 type flag struct {
@@ -17,7 +18,7 @@ func (f flag) Name() string {
 func (f flag) Shorthand() string {
 	for _, name := range f.Names() {
 		if len(name) == 1 {
-			return "-" + name
+			return name
 		}
 	}
 	return ""
@@ -44,12 +45,47 @@ func (f flag) TakesFile() bool {
 		if flag.TakesFile {
 			return true
 		}
-	case *cli.PathFlag:
-		if flag.TakesFile {
-			return true
-		}
 	}
 	return false
+}
+
+func (f flag) Default() string {
+	docFlag, ok := f.Flag.(cli.DocGenerationFlag)
+	if !ok || !docFlag.TakesValue() {
+		return ""
+	}
+
+	// In v3, GetDefaultText returns only the explicit DefaultText field.
+	// GetValue returns the stringified actual default value (Value field).
+	text := docFlag.GetDefaultText()
+	if text == "" {
+		text = docFlag.GetValue()
+	}
+	if text == "" {
+		return ""
+	}
+
+	// StringFlag and StringSliceFlag wrap their defaults in
+	// display quoting (%q / strconv.Quote) via GetValue. Unwrap so
+	// pflag's Value.Set() receives the raw value.
+	switch f.Flag.(type) {
+	case *cli.StringFlag:
+		if unquoted, err := strconv.Unquote(text); err == nil {
+			return unquoted
+		}
+	case *cli.StringSliceFlag:
+		parts := strings.Split(text, ", ")
+		unquoted := make([]string, 0, len(parts))
+		for _, p := range parts {
+			if u, err := strconv.Unquote(p); err == nil {
+				unquoted = append(unquoted, u)
+			} else {
+				unquoted = append(unquoted, p)
+			}
+		}
+		return strings.Join(unquoted, ", ")
+	}
+	return text
 }
 
 func (f flag) Usage() string {
